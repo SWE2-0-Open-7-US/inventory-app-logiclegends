@@ -15,15 +15,6 @@ export const Item = ({ match }) => {
         setItem(data)
     }
 
-    // router.get('/:id', async (req, res) => {
-    //     const item = await Item.findByPk(req.params.id);
-    //     if (item) {
-    //         res.json(item);
-    //     } else {
-    //         res.status(404).send('Item not found');
-    //     }
-    // });
-
     return (
         <div>
             {item && (
