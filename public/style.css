@@ -3,3 +3,13 @@
   box-sizing: border-box;
   background-color: rgb(223, 223, 223);
 }
+
+:root {
+  padding: 20%;
+  text-align: center;
+}
+
+img {
+  width: 75%;
+  height: auto;
+}
