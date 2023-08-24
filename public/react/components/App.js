@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import { SaucesList } from './SaucesList';
 import { Item } from './Item';
 
@@ -6,29 +7,17 @@ import { Item } from './Item';
 import apiURL from '../api';
 
 export const App = () => {
-
-	const [sauces, setSauces] = useState([]);
-
-	async function fetchSauces(){
-		try {
-			const response = await fetch(`${apiURL}/sauces`);
-			const saucesData = await response.json();
-			
-			setSauces(saucesData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
-
-	useEffect(() => {
-		fetchSauces();
-	}, []);
-
 	return (
-		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
-			<SaucesList sauces={sauces} />
-		</main>
+		
+		<BrowserRouter>
+		<Routes>
+			<Route path="/sauces" element={<SaucesList/>}/>
+			<Route path='/items/:id' element={<Item />}/>
+		</Routes>
+		
+		</BrowserRouter>
+	
+		
+		
 	)
 }
