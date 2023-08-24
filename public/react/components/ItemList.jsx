@@ -1,13 +1,14 @@
 // Front-end View for all Items - Tier 1 #6
 
 import React, { useState, useEffect } from 'react';
+import apiURL from '../api';
 
 function ItemList() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     // Fetch items from API
-    fetch('/items')
+    fetch(`${apiURL}/items`)
       .then(response => response.json())
       .then(data => setItems(data))
       .catch(error => console.error('Error fetching items:', error));

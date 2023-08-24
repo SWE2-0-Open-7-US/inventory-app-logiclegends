@@ -5,6 +5,7 @@ import { Item } from './Item';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
+import ItemList from './ItemList';
 
 export const App = () => {
 	return (
@@ -12,6 +13,8 @@ export const App = () => {
 		<BrowserRouter>
 		<Routes>
 			<Route path="/sauces" element={<SaucesList/>}/>
+			<Route path='/items' element={<ItemList/>}/>
+
 			<Route path='/items/:id' element={<Item />}/>
 		</Routes>
 		
