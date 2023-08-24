@@ -9,7 +9,6 @@ export const Item = () => {
 
     useEffect(() => {
         fetchItem()
-        console.log('useeffect');
     }, [id])
 
     const fetchItem = async () => {

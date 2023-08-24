@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SaucesList } from './SaucesList';
 import { Item } from './Item';
-// import { ItemList } from './ItemList';
-
+import ItemList from './ItemList';
 
 export const App = () => {
 	return (
@@ -11,8 +10,8 @@ export const App = () => {
 
 			<Routes>
 				<Route path="/sauces" element={<SaucesList />} />
+				<Route path='/items/' element={<ItemList />} />
 				<Route path='/items/:id' element={<Item />} />
-				<Route path='/items/' element={<Item />} />
 			</Routes>
 
 		</BrowserRouter>
