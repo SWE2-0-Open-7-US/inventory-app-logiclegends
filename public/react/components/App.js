@@ -15,7 +15,7 @@ export const App = () => {
 				<Route path="/sauces" element={<SaucesList />} />
 				<Route path='/items/' element={<ItemList />} />
 				<Route path='/items/:id' element={<Item />} />
-				<Route path='/items/itemform' element={<AddItemForm />} />
+				<Route path='/items/addItem' element={<AddItemForm />} />
 			</Routes>
 
 		</BrowserRouter>

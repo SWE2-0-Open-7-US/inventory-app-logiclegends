@@ -1,9 +1,11 @@
 // Front-end View for all Items - Tier 1 #6
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import apiURL from '../api';
 
 function ItemList() {
+  const navigate = useNavigate()
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -19,13 +21,14 @@ function ItemList() {
       <h1>All Items</h1>
       <ul>
         {items.map(item => (
-          <li key={item.id}>
-            <h2>{item.name}</h2>
-            {/* items */}
-            <a href={`/items/${item.id}`}>{item.name}</a>
-            <a href={`/items/${item.id}`}>{item.price}</a>
-            <a href={`/items/${item.id}`}>{item.image}</a>
-          </li>
+          <div className='all-items' key={item.id} onClick={()=>navigate(`/items/${item.id}`)}>
+              <h2>{item.name}</h2>
+              <img src={item.image} alt={`${item.name}`} />
+              <p>${item.price}</p>
+          </div>
+
+
+
         ))}
       </ul>
     </div>
