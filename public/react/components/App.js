@@ -4,7 +4,7 @@ import { SaucesList } from './SaucesList';
 import { Item } from './Item';
 import ItemList from './ItemList';
 import AddItemForm from './AddItemForm';
-import Navbar from './Navbar
+import Navbar from './Navbar'
 
 export const App = () => {
 	return (
