@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import apiURL from '../api';
 
 
@@ -11,14 +10,11 @@ export const EditItem = ({item, setIsEdit, id}) => {
         price: item.price,
         category: item.category,
     });
-    // const {id} = useParams()
-    const navigate = useNavigate()
-    console.log(updatedItem)
 
     const editItem = async (e) => {
         e.preventDefault();
         try {
-            let response = await fetch(`${apiURL}/items/edit/${id}`, {
+            let response = await fetch(`${apiURL}/items/${id}`, {
                 method: 'PUT',
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(updatedItem)
@@ -46,7 +42,7 @@ export const EditItem = ({item, setIsEdit, id}) => {
         <h2>Edit Item</h2>
         <form onSubmit={editItem}>
             <div>
-                <label>Name:</label>
+                <label>Name: </label>
                 <input
                     type="text"
                     name="name"
@@ -55,7 +51,7 @@ export const EditItem = ({item, setIsEdit, id}) => {
                 />
             </div>
             <div>
-                <label>Image URL:</label>
+                <label>Image URL: </label>
                 <input
                     type="text"
                     name="image"
@@ -64,7 +60,7 @@ export const EditItem = ({item, setIsEdit, id}) => {
                 />
             </div>
             <div>
-                <label>Description:</label>
+                <label>Description: </label>
                 <textarea
                     name="description"
                     value={updatedItem.description}
@@ -72,7 +68,7 @@ export const EditItem = ({item, setIsEdit, id}) => {
                 ></textarea>
             </div>
             <div>
-                <label>Price:</label>
+                <label>Price: </label>
                 <input
                     type="number"
                     name="price"
@@ -81,7 +77,7 @@ export const EditItem = ({item, setIsEdit, id}) => {
                 />
             </div>
             <div>
-                <label>Category:</label>
+                <label>Category: </label>
                 <input
                     type="text"
                     name="category"

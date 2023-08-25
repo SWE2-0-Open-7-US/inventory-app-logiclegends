@@ -6,7 +6,7 @@ import { EditItem } from './EditItem';
 
 export const Item = () => {
     const [item, setItem] = useState(null);
-    const {id} = useParams()
+    const { id } = useParams()
     // const navigate = useNavigate()
 
     const [isEdit, setIsEdit] = useState(false)
@@ -30,12 +30,12 @@ export const Item = () => {
                     <p>{item.description}</p>
                     <p>Price: ${item.price}</p>
                     <p>Category: {item.category}</p>
-                    <button onClick={()=>setIsEdit(!isEdit)} >Edit Item</button>
+                    <button onClick={() => setIsEdit(!isEdit)} >Edit Item</button>
                     {isEdit && (
                         <EditItem setIsEdit={setIsEdit} item={item} id={id} />
                     )}
-                </> 
-            ) }
+                </>
+            )}
         </div>
     )
 }

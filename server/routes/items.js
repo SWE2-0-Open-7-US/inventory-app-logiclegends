@@ -2,7 +2,6 @@
 
 const router = require('express').Router();
 const { Item } = require("../models");
-// Sequelize
 
 // GET / items
 router.get('/', async (req, res) => {
@@ -28,5 +27,25 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
+
+
+
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      await item.update(req.body)
+      res.send(item)
+    } else {
+      res.status(404).send('Item not found');
+    }
+  } catch (error) {
+    console.error('Error updating item:', error);
+    next(error)
+  }
+})
 
 module.exports = router;
