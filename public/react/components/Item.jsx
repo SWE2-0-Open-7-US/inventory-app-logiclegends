@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import apiURL from '../api';
 import { EditItem } from './EditItem';
 
@@ -7,7 +7,6 @@ import { EditItem } from './EditItem';
 export const Item = () => {
     const [item, setItem] = useState(null);
     const { id } = useParams()
-    // const navigate = useNavigate()
 
     const [isEdit, setIsEdit] = useState(false)
 
