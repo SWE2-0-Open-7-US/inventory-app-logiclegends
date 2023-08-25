@@ -22,9 +22,9 @@ function ItemList() {
           <li key={item.id}>
             <h2>{item.name}</h2>
             {/* items */}
-            <a href={`/item/${item.id}`}>{item.name}</a>
-            <a href={`/item/${item.id}`}>{item.price}</a>
-            <a href={`/item/${item.id}`}>{item.image}</a>
+            <a href={`/items/${item.id}`}>{item.name}</a>
+            <a href={`/items/${item.id}`}>{item.price}</a>
+            <a href={`/items/${item.id}`}>{item.image}</a>
           </li>
         ))}
       </ul>
@@ -33,3 +33,5 @@ function ItemList() {
 }
 
 export default ItemList;
+
+
