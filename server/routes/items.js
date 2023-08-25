@@ -22,8 +22,7 @@ router.get('/:id', async (req, res) => {
       res.status(404).send('Item not found');
     }
   } catch (error) {
-    console.error('Error fetching item:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    next(error)
   }
 });
 
@@ -42,7 +41,6 @@ router.put('/:id', async (req, res, next) => {
       res.status(404).send('Item not found');
     }
   } catch (error) {
-    console.error('Error updating item:', error);
     next(error)
   }
 })
