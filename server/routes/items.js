@@ -2,7 +2,6 @@
 
 const router = require('express').Router();
 const { Item } = require("../models");
-// Sequelize
 
 // GET / items
 router.get('/', async (req, res, next) => {
@@ -23,12 +22,10 @@ router.get('/:id', async (req, res) => {
       res.status(404).send('Item not found');
     }
   } catch (error) {
-    console.error('Error fetching item:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    next(error)
   }
 });
 
-// router.use(bodyParser.json());
 
 // POST request to add items
 router.post('/addItem', async (req, res) => {
@@ -37,5 +34,34 @@ router.post('/addItem', async (req, res) => {
   // res.status(200).json({ message: 'Item added successfully' });
   res.json(newItem);
 });
+
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      await item.update(req.body)
+      res.send(item)
+    } else {
+      res.status(404).send('Item not found');
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      await item.destroy(req.body)
+      res.send("Item deleted")
+    } else {
+      res.status(404).send('Item not found');
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router;
