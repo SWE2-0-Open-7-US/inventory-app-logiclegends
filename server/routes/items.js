@@ -45,4 +45,18 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const item = await Item.findByPk(req.params.id);
+    if (item) {
+      await item.destroy(req.body)
+      res.send("Item deleted")
+    } else {
+      res.status(404).send('Item not found');
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router;
