@@ -13,3 +13,34 @@ img {
   width: 75%;
   height: auto;
 }
+
+nav{
+  padding: 1.5rem;
+  border-bottom: 5px black solid;
+}
+
+nav ul{
+  display:flex;
+  justify-content: space-around;
+  
+}
+
+nav ul li {
+  list-style-type: none;
+  /* text-decoration: none; */
+  
+
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: black;
+}
+
+li a:hover{
+  text-decoration: underline;
+  color: rgb(56, 155, 255);
+}
+
+
+
