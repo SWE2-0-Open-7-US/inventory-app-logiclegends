@@ -1,10 +1,13 @@
 // Front-End Adding an Item - Tier 2 #17
 
 import React, { useState } from 'react';
+import apiURL from '../api';
+import {useNavigate} from "react-router-dom"
 
 const AddItemForm = () => {
   const [itemName, setItemName] = useState('');
   const [itemDescription, setItemDescription] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // handler
@@ -15,7 +18,7 @@ const AddItemForm = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:1234/addItem', {
+      const response = await fetch(`${apiURL}/items/addItem`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,6 +28,7 @@ const AddItemForm = () => {
 
       if (response.ok) {
         console.log('Item has been added'); // success
+        navigate('/items'); // Use navigate here
       } else {
         console.error('Failed to be add item'); // fail
       }

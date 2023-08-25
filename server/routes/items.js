@@ -28,4 +28,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// router.use(bodyParser.json());
+
+// POST request to add items
+router.post('/addItem', async (req, res) => {
+  const newItem = await Item.create(req.body);
+  console.log('New item recieved:', newItem);
+  // res.status(200).json({ message: 'Item added successfully' });
+  res.json(newItem);
+});
+
 module.exports = router;
