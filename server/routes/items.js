@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Item } = require("../models");
+const { validationResult } = require('express-validator');
 
-// GET / items
+// GET - items
 router.get('/', async (req, res, next) => {
   try {
     const items = await Item.findAll(); // Fetch items from database
@@ -24,29 +25,55 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+// POST - request to add items
+router.post('/addItem', [
+  check('name').notEmpty(),
+  check('image').notEmpty().isURL(),
+  check('description').notEmpty(),
+  check('price').notEmpty().isFloat({ min: 0 }),
+  check('category').notEmpty(),
+], async (req, res, next) => {
+  const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-// POST request to add items
-router.post('/addItem', async (req, res) => {
-  const newItem = await Item.create(req.body);
-  console.log('New item recieved:', newItem);
-  res.json(newItem);
+    try {
+      const newItem = await Item.create(req.body);
+      console.log('New item received:', newItem);
+      res.json(newItem);
+    } catch (error) {
+      next(error)
+    }
 });
 
+// PUT
+router.put('/:id', [
+  check('name').notEmpty(),
+  check('image').notEmpty().isURL(),
+  check('description').notEmpty(),
+  check('price').notEmpty().isFloat({ min: 0 }),
+  check('category').notEmpty(),
+], async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-router.put('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id);
     if (item) {
-      await item.update(req.body)
-      res.send(item)
+      await item.update(req.body);
+      res.send(item);
     } else {
       res.status(404).send('Item not found');
     }
   } catch (error) {
     next(error)
   }
-})
+});
 
+// DELETE
 router.delete('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id);
