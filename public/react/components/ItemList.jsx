@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { itemPriceFormatter } from '../utils/utils';
+import Filter from './Filter';
 
 function ItemList() {
   const navigate = useNavigate()
@@ -22,23 +23,38 @@ function ItemList() {
       .catch(error => console.error('Error fetching items:', error));
   }, []);
 
+  const filterItems = async (criteria, query) => {
+    const response = await fetch(`${apiURL}/items/filter?criteria=${criteria}&query=${query}`);
+    const data = await response.json();
+    setItems(data);
+  };
+
   return (
     <>
-    <Container>
-      <Row>
-        {items.map(item => (
-          <Col md={4} sm={6} xs={12} key={item.id} className="my-4">
-            <Card style={{ cursor: 'pointer', minHeight: '100%' }} onClick={() => navigate(`/items/${item.id}`)}>
-              <Card.Img variant="top" src={item.image} alt={`${item.name}`} style={{ height: '200px', padding: '5%', objectFit: 'contain' }} />
-              <Card.Body >
-              <Card.Title style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.name}</Card.Title>
-              <Card.Text>{itemPriceFormatter.format(item.price)}</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+      {
+        items && (
+          <Container>
+            <Row>
+              <Col>
+            <Filter filterItems={filterItems} />
+              </Col>
+            </Row>
+            <Row>
+              {items.map(item => (
+                <Col md={4} sm={6} xs={12} key={item.id} className="my-4">
+                  <Card style={{ cursor: 'pointer', minHeight: '100%' }} onClick={() => navigate(`/items/${item.id}`)}>
+                    <Card.Img variant="top" src={item.image} alt={`${item.name}`} style={{ height: '200px', padding: '5%', objectFit: 'contain' }} />
+                    <Card.Body >
+                      <Card.Title style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.name}</Card.Title>
+                      <Card.Text>{itemPriceFormatter.format(item.price)}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        )
+      }
     </>
   );
 }
