@@ -44,7 +44,7 @@ const AddItemForm = () => {
       <br></br>
       <form onSubmit={handleSubmit}>
         <label>
-          Item Name:
+          Item Name: <space></space>
           <input
             type="text"
             value={itemName}
@@ -55,7 +55,7 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Category:
+          Category: <space></space>
           <input
             type="text"
             value={itemCategory}
@@ -66,7 +66,7 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Item Description:
+          Item Description: <space></space>
           <textarea // for more writing
             value={itemDescription}
             onChange={(e) => setItemDescription(e.target.value)}
@@ -76,7 +76,7 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Price:
+          Price: <space></space>
           <input
           type="text"
           value={itemPrice}
@@ -86,6 +86,7 @@ const AddItemForm = () => {
         
         <br></br> <br></br>
         <button type="submit">Add Item</button>
+        <br></br> <br></br>
       </form>
     </div>
   );
