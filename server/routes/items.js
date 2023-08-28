@@ -1,5 +1,3 @@
-// Express Route to GET all Items - Tier 1 #3
-
 const router = require('express').Router();
 const { Item } = require("../models");
 
@@ -13,7 +11,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id);
     if (item) {
@@ -31,7 +29,6 @@ router.get('/:id', async (req, res) => {
 router.post('/addItem', async (req, res) => {
   const newItem = await Item.create(req.body);
   console.log('New item recieved:', newItem);
-  // res.status(200).json({ message: 'Item added successfully' });
   res.json(newItem);
 });
 
