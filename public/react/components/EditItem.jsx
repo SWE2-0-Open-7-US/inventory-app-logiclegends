@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import apiURL from '../api';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Container from 'react-bootstrap/Container';
 
 
 export const EditItem = ({item, setIsEdit, id}) => {
@@ -38,55 +42,86 @@ export const EditItem = ({item, setIsEdit, id}) => {
     };
 
     return (
-        <div>
-        <h2>Edit Item</h2>
-        <form onSubmit={editItem}>
-            <div>
-                <label>Name: </label>
-                <input
-                    type="text"
-                    name="name"
-                    value={updatedItem.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>Image URL: </label>
-                <input
-                    type="text"
-                    name="image"
-                    value={updatedItem.image}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>Description: </label>
-                <textarea
-                    name="description"
-                    value={updatedItem.description}
-                    onChange={handleChange}
-                ></textarea>
-            </div>
-            <div>
-                <label>Price: </label>
-                <input
-                    type="number"
-                    name="price"
-                    value={updatedItem.price}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>Category: </label>
-                <input
-                    type="text"
-                    name="category"
-                    value={updatedItem.category}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit">Update Item</button>
-        </form>
-        </div>
+        <Container className="my-3">
+            <h2>Edit Item</h2>
+            <Form onSubmit={editItem}>
+                <FloatingLabel
+                    controlId="floatingItemName"
+                    label="Name"
+                    className="mb-3"
+                >
+                    <Form.Control
+                        type="text"
+                        name="name"
+                        value={updatedItem.name}
+                        onChange={handleChange}
+                        placeholder="Name"
+                        required
+                    />
+                </FloatingLabel>
+
+                <FloatingLabel
+                    controlId="floatingItemImageURL"
+                    label="Image URL"
+                    className="mb-3"
+                >
+                    <Form.Control
+                        type="text"
+                        name="image"
+                        value={updatedItem.image}
+                        onChange={handleChange}
+                        placeholder="Image URL"
+                        required
+                    />
+                </FloatingLabel>
+
+                <FloatingLabel
+                    controlId="floatingItemDescription"
+                    label="Description"
+                    className="mb-3"
+                >
+                    <Form.Control
+                        as="textarea"
+                        name="description"
+                        value={updatedItem.description}
+                        onChange={handleChange}
+                        placeholder="Description"
+                        required
+                    />
+                </FloatingLabel>
+
+                <FloatingLabel
+                    controlId="floatingItemPrice"
+                    label="Price"
+                    className="mb-3"
+                >
+                    <Form.Control
+                        type="number"
+                        name="price"
+                        value={updatedItem.price}
+                        onChange={handleChange}
+                        placeholder="Price"
+                        required
+                    />
+                </FloatingLabel>
+
+                <FloatingLabel
+                    controlId="floatingItemCategory"
+                    label="Category"
+                    className="mb-3"
+                >
+                    <Form.Control
+                        type="text"
+                        name="category"
+                        value={updatedItem.category}
+                        onChange={handleChange}
+                        placeholder="Category"
+                        required
+                    />
+                </FloatingLabel>
+
+                <Button type="submit">Update Item</Button>
+            </Form>
+        </Container>
     )
 }
