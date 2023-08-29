@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Item } = require("../models");
+const { Op } = require('sequelize');
 
 // GET / items
 router.get('/', async (req, res, next) => {
@@ -8,6 +9,24 @@ router.get('/', async (req, res, next) => {
     res.json(items);
   } catch (error) {
     next(error);
+  }
+});
+
+router.get('/filter', async (req, res, next) => {
+  console.log('filter');
+  try {
+    const { criteria, query } = req.query;
+
+    const items = await Item.findAll({
+      where: {
+        [criteria]: {
+          [Op.like]: `%${query}%`
+        }
+      }
+    });
+    res.json(items);
+  } catch (error) {
+    next(error)
   }
 });
 
