@@ -43,6 +43,8 @@ export const App = () => {
 				}
 				<Route path='*' element={<Navigate to="/items" />}/>
 				
+				}
+				
 
 			</Routes>
 
