@@ -5,18 +5,45 @@ import { Item } from './Item';
 import ItemList from './ItemList';
 import AddItemForm from './AddItemForm';
 import Navbar from './Navbar';
+import Signup from './Signup';
+import Login from './Login';
 
 
 export const App = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+	useEffect(()=>{
+		if(localStorage.getItem("username")){
+			setIsLoggedIn(true);
+		}
+	})
+
 	return (
 		<BrowserRouter>
-			<Navbar />
+			<Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
 
 			<Routes>
+				{isLoggedIn ? (
+				<>
 				<Route path="/sauces" element={<SaucesList />} />
 				<Route path='/items/' element={<ItemList />} />
 				<Route path='/items/:id' element={<Item />} />
 				<Route path='/items/addItem' element={<AddItemForm />} />
+				</>
+				) : (
+				<>
+				<Route path="/sauces" element={<SaucesList />} />
+				<Route path='/items/' element={<ItemList />} />
+				<Route path='/items/:id' element={<Item />} />
+				<Route path='/items/addItem' element={<AddItemForm />} />
+				<Route path='/signup' element={<Signup setIsLoggedIn={setIsLoggedIn}/>} />
+				<Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn}/>}/>
+				</>
+				)
+				
+				}
+				
+
 			</Routes>
 
 		</BrowserRouter>

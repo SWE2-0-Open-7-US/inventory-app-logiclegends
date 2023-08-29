@@ -11,17 +11,40 @@ router.get("/", async(req,res,next)=>{
     }
 })
 
-router.get("/:id", async(req,res,next)=>{
+router.get("/:username/:password", async(req,res,next)=>{
     try {
-        const singleUser = await User.findByPk(req.params.id);
+        const singleUser = await User.findOne({
+            where:{
+                username: req.params.username,
+                password: req.params.password
+            }
+        });
         if(singleUser){
             res.json(singleUser)
         }else{
-            res.status(404).send('User not found');
+            res.status(404).json('User not found');
         }
          
     } catch (error) {
         next(error)
+    }
+})
+
+router.get("/:username", async(req,res,next)=>{
+    try {
+        const verifyUser = await User.findOne({
+            where: {
+                username : req.params.username
+            }
+        })
+        if(verifyUser){
+            res.json(true)
+        }else{
+            res.json(false)
+        }
+        
+    } catch (error) {
+        next(err)
     }
 })
 
