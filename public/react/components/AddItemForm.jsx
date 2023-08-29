@@ -6,7 +6,7 @@ const AddItemForm = () => {
   const [itemName, setItemName] = useState('');
   const [itemDescription, setItemDescription] = useState('');
   const [itemCategory, setItemCategory] = useState('');
-  const [itemPrice, setPriceCategory] = useState('');
+  const [itemPrice, setItemPrice] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -44,7 +44,7 @@ const AddItemForm = () => {
       <br></br>
       <form onSubmit={handleSubmit}>
         <label>
-          Item Name: <space></space>
+          Item Name:
           <input
             type="text"
             value={itemName}
@@ -55,7 +55,7 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Category: <space></space>
+          Category:
           <input
             type="text"
             value={itemCategory}
@@ -66,8 +66,8 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Item Description: <space></space>
-          <textarea // for more writing
+          Item Description:
+          <textarea
             value={itemDescription}
             onChange={(e) => setItemDescription(e.target.value)}
             required
@@ -76,11 +76,12 @@ const AddItemForm = () => {
 
         <br></br> <br></br>
         <label>
-          Price: <space></space>
+          Price:
           <input
-          type="text"
+          type="number"
           value={itemPrice}
-          onChange={(e) => setItemCategory(e.target.value)}
+          onChange={(e) => setItemPrice(e.target.value)}
+          required
           />
         </label>
         
@@ -93,5 +94,3 @@ const AddItemForm = () => {
 };
 
 export default AddItemForm;
-
-//

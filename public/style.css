@@ -15,9 +15,15 @@ img {
   border-radius: 10px;
 }
 
-nav{
+nav {
   padding: 1.5rem;
   border-bottom: 5px black solid;
+  /* Will always remian at top: */
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: whitesmoke;
 }
 
 nav ul{
@@ -41,4 +47,6 @@ li a:hover{
 }
 
 
-
+div ul li {
+  list-style: none;
+}
