@@ -23,8 +23,6 @@ export const EditItem = ({item, setIsEdit, id}) => {
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(updatedItem)
             })
-            let data = await response.json()
-
             if (response.ok) {
                 setIsEdit(false)
 			}

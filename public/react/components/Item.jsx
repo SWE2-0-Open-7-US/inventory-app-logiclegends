@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Collapse from 'react-bootstrap/Collapse';
+import AddToCart from './AddToCart';
 
 
 export const Item = () => {
@@ -57,8 +58,10 @@ export const Item = () => {
                                     <Card.Text>{item.description}</Card.Text>
                                     <Card.Text>Price: {itemPriceFormatter.format(item.price)}</Card.Text>
                                     <Card.Text>Category: {item.category}</Card.Text>
+                                    <AddToCart item={item}/>
                                     <Button
-                                        variant="primary"
+                                        variant="secondary"
+                                        className='mx-1'
                                         onClick={() => setIsEdit(!isEdit)}
                                         aria-controls="edit-item-collapse"
                                         aria-expanded={isEdit}

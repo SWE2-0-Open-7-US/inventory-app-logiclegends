@@ -7,9 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import { itemPriceFormatter } from '../utils/utils';
 import Filter from './Filter';
+import AddToCart from './AddToCart';
 
 function ItemList() {
   const navigate = useNavigate()
@@ -37,14 +37,6 @@ function ItemList() {
     }
   };
 
-  const addToCart = (item) => {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    cart.push(item);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-  };
-
   return (
     <>
       <Container>
@@ -54,15 +46,12 @@ function ItemList() {
         <Row>
           {items.map(item => (
             <Col md={4} sm={6} xs={12} key={item.id} className="mt-4">
-              <Card style={{ cursor: 'pointer', minHeight: '100%' }} >
-                <Card.Img onClick={() => navigate(`/items/${item.id}`)} variant="top" src={item.image} alt={`${item.name}`} style={{ height: '200px', padding: '5%', objectFit: 'contain' }} />
+              <Card>
+                <Card.Img  onClick={() => navigate(`/items/${item.id}`)} variant="top" src={item.image} alt={`${item.name}`} style={{ height: '200px', padding: '5%', objectFit: 'contain', cursor: 'pointer' }} />
                 <Card.Body >
                   <Card.Title style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.name}</Card.Title>
                   <Card.Text>{itemPriceFormatter.format(item.price)}</Card.Text>
-                   <Button onClick={() => {
-                    addToCart(item)
-                    navigate('/cart')
-                    }}>Add to Cart</Button>
+                   <AddToCart item={item} />
                 </Card.Body>
               </Card>
             </Col>
