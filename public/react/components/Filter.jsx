@@ -47,7 +47,7 @@ function Filter({ filterItems }) {
                         className="flex-grow-1 mx-2"
                     />
 
-                    <Button variant="secondary" onClick={() => {
+                    <Button variant="secondary" className='d-none d-lg-block' onClick={() => {
                         setQuery('');
                         if (timeoutId) {
                             clearTimeout(timeoutId);

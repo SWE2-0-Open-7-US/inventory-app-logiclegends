@@ -15,7 +15,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/filter', async (req, res, next) => {
-  console.log('filter');
   try {
     const { criteria, query } = req.query;
 
