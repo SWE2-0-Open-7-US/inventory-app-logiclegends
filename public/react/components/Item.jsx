@@ -38,7 +38,7 @@ export const Item = () => {
                 navigate(`/items`)
             }
         } catch (error) {
-            console.log("Oh no an error! ", error)
+            console.log("Error deleting item", error)
         }
     }
 

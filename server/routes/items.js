@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const { Item } = require("../models");
+const { Op } = require('sequelize');
 
 // GET / items
 router.get('/', async (req, res, next) => {
@@ -13,7 +14,25 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/filter', async (req, res, next) => {
+  console.log('filter');
+  try {
+    const { criteria, query } = req.query;
+
+    const items = await Item.findAll({
+      where: {
+        [criteria]: {
+          [Op.like]: `%${query}%`
+        }
+      }
+    });
+    res.json(items);
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id);
     if (item) {
@@ -29,10 +48,13 @@ router.get('/:id', async (req, res) => {
 
 // POST request to add items
 router.post('/addItem', async (req, res) => {
-  const newItem = await Item.create(req.body);
-  console.log('New item recieved:', newItem);
-  // res.status(200).json({ message: 'Item added successfully' });
-  res.json(newItem);
+  try {
+    const newItem = await Item.create(req.body);
+    console.log('New item recieved:', newItem);
+    res.json(newItem);
+  } catch (error) {
+    next(error)
+  }
 });
 
 
