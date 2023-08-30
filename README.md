@@ -34,4 +34,4 @@ Visit our deployed application [here](https://logiclegend-inventory-app.onrender
 
 ## Video Demo
 
-Check out our [video demo](https://youtu.be/UkpF-VYpKSw)to see the Inventory App in action.
+Check out our [video demo](https://www.youtube.com/watch?v=UkpF-VYpKSw)to see the Inventory App in action.
