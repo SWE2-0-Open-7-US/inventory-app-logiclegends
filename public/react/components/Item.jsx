@@ -12,7 +12,6 @@ import Image from 'react-bootstrap/Image';
 import Collapse from 'react-bootstrap/Collapse';
 
 
-
 export const Item = () => {
     const [item, setItem] = useState(null);
     const { id } = useParams()
@@ -78,9 +77,12 @@ export const Item = () => {
                                 </Card.Footer>
                             </div>
                         </Collapse>
+
                     </Card>
                 </div>
             )}
         </Container>
     )
 }
+
+export default Item;

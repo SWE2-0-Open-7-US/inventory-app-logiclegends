@@ -5,8 +5,12 @@ import { Item } from './Item';
 import ItemList from './ItemList';
 import AddItemForm from './AddItemForm';
 import Navbar from './Navbar';
+import Checkout from './Checkout';
+import Confirmation from './Confirmation';
+import Cart from './Cart';
 import Signup from './Signup';
 import Login from './Login';
+
 
 
 export const App = () => {
@@ -29,6 +33,9 @@ export const App = () => {
 				<Route path='/items/' element={<ItemList />} />
 				<Route path='/items/:id' element={<Item />} />
 				<Route path='/items/addItem' element={<AddItemForm />} />
+        <Route path='/cart' element={<Cart />} />
+				<Route path='/checkout' element={<Checkout />} />
+				<Route path='/confirmation' element={<Confirmation />} />
 				</>
 				) : (
 				<>
@@ -44,7 +51,6 @@ export const App = () => {
 				<Route path='*' element={<Navigate to="/items" />}/>
 				
 				}
-				
 
 			</Routes>
 

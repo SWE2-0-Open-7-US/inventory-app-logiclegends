@@ -14,7 +14,7 @@ const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
           <Link to="/items">Items</Link>
         </li>
         <li>
-          <Link to="/items/addItem">Create Item</Link>
+          <Link to="/cart">Cart</Link>
         </li>
         {!isLoggedIn ? (
         <>
@@ -27,6 +27,9 @@ const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
         </>
         ) : (
         <>
+        <li>
+          <Link to="/items/addItem">Create Item</Link>
+        </li>
         <li>Welcome, {localStorage.getItem("username")}</li>
         <li><button type='submit' onClick={logoutFunc}>Logout</button></li>
         </>
