@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import apiURL from '../api';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
