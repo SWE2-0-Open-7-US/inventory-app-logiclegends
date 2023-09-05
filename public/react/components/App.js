@@ -1,33 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { SaucesList } from './SaucesList';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Item } from './Item';
+import ItemList from './ItemList';
+import AddItemForm from './AddItemForm';
+import Navbar from './Navbar';
+import Confirmation from './Confirmation';
+import Cart from './Cart';
+import Signup from './Signup';
+import Login from './Login';
 
-// import and prepend the api url to any fetch calls
-import apiURL from '../api';
+
 
 export const App = () => {
-
-	const [sauces, setSauces] = useState([]);
-
-	async function fetchSauces(){
-		try {
-			const response = await fetch(`${apiURL}/sauces`);
-			const saucesData = await response.json();
-			
-			setSauces(saucesData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	useEffect(() => {
-		fetchSauces();
-	}, []);
+		if (localStorage.getItem("username")) {
+			setIsLoggedIn(true);
+		}
+	})
 
 	return (
-		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
-			<SaucesList sauces={sauces} />
-		</main>
+		<BrowserRouter>
+			<Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
+			<Routes>
+
+				<Route path='/cart' element={<Cart isLoggedIn={isLoggedIn} />} />
+				<Route path='/confirmation' element={<Confirmation />} />
+				<Route path='/items/' element={<ItemList />} />
+				<Route path='/items/:id' element={<Item />} />
+				<Route path='/items/addItem' element={<AddItemForm />} />
+				<Route path='/signup' element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
+				<Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+
+				<Route path='*' element={<Navigate to="/items" />} />
+			</Routes>
+
+		</BrowserRouter>
 	)
 }
+
+
